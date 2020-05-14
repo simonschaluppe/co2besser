@@ -1,0 +1,24 @@
+{%  extends "base.html" %}
+
+{% block content %}
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            {% for attr in actions[11].__dict__.keys() %}
+{#            ^ not happy with this one ^#}
+{#            {% for attr in list(actions[1].__dict__)[1:] %}#}
+{#            why doesnt this^ work?? #}
+                <th>{{ attr }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+
+    {% for action in actions[11:] %}
+    <tr>
+        {% for attr in actions[11].__dict__.keys() %}
+        <td>{{ action.__getattribute__(attr) }}</td>
+        {% endfor %}
+    </tr>
+    {%  endfor %}
+</table>
+{% endblock %}

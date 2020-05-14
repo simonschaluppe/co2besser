@@ -1,0 +1,14 @@
+{%  extends "base.html" %}
+
+{% block app_content %}
+    <h1>Was ist besser?</h1>
+    {% if action1 and action2 %}
+        <h2> {{ action1.name }} </h2>
+        <h4> {{ action1.description }} </h4>
+        <h3> or </h3>
+        <h2> {{ action2.name }} </h2>
+        <h4> {{ action2.description }} </h4>
+    {% else %}
+        <h1> action1 or action2 missing!</h1>
+    {% endif %}
+{%  endblock %}
