@@ -10,20 +10,27 @@
             <div class="col-sm-5">
                 {{ action1.name }} <br/>
                 {{ action1.description }}<br/>
-                <a href="{{ url_for("guess_left") }}">Wählen!</a>
+                {{ action1.savings }}
             </div>
-            <div class="col-sm-2">
+              <div class="col-sm-2">
+              {# TODO: Styling both winning and loosing action #}
                  oder
             </div>
             <div class="col-sm-5">
                  {{ action2.name }}<br/>
                  {{ action2.description }}<br/>
-                <a href="{{ url_for("guess_right") }}">Wählen!</a>
+                 {{ action2.savings }}
             </div>
           </div>
         </div>
-        {# TODO: Add hints #}
-        <a href="{{ url_for("reveal") }}">Hint</a>
+        {% if action1.savings <  action2.savings %}
+              {# TODO: Add graph and logging #}
+            <h1>RICHTIG!</h1>
+        {% else %}
+            <h1>Falsch!</h1>
+        {% endif %}
+        <a href="{{ url_for("index") }}">Noch eins...</a>
+
     {% else %}
         <h1> action1 or action2 missing!</h1>
     {% endif %}

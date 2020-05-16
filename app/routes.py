@@ -17,6 +17,21 @@ def index():
     return render_template("index.html", action1=app.a1, action2=app.a2)
 
 
+@app.route('/guess_left')
+def guess_left():
+    return render_template("guess_left.html", action1=app.a1, action2=app.a2)
+
+@app.route('/guess_right')
+def guess_right():
+    return render_template("guess_right.html", action1=app.a1, action2=app.a2)
+#TODO: Guesses in einem template zusammenfassen:
+#def guess(side):
+#   return render_template("reveal.html", guess=side, action1=app.a1, action2=app.a2)
+@app.route('/reveal')
+def reveal():
+    return render_template("reveal.html", action1=app.a1, action2=app.a2)
+
+
 @app.route('/actions')
 def actions():
     # getze actions
@@ -44,6 +59,3 @@ def submit():
         return redirect(url_for("submit"))
     return render_template("submit_new.html", form=form)
 
-@app.route('/reveal')
-def reveal():
-    return render_template("reveal.html", action1=app.a1, action2=app.a2)
