@@ -20,3 +20,6 @@ class Action(Base):
 
     def __repr__(self):
         return '<Maßnahme %r>' % self.name
+
+
+# TODO: Add Comparisons, that log action pairings, as well as votes

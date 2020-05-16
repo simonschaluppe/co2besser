@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
+from random import sample
 
 from config import Config
 
@@ -29,6 +30,8 @@ from app.models import Action
 #     db_session.add(action)
 #     db_session.commit()
 #
+
+app.a1, app.a2 = sample(database.data.all()[1:], 2)
 
 # routes
 from app import routes

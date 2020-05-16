@@ -10,18 +10,23 @@
             <div class="col-sm-5">
                 {{ action1.name }}
                 {{ action1.description }}
+                {{ action1.savings }}
             </div>
-            <div class="col-sm-2">
+              <div class="col-sm-2">
+              {# TODO: Styling both winning and loosing action #}
                  oder
             </div>
             <div class="col-sm-5">
                  {{ action2.name }}
                  {{ action2.description }}
+                 {{ action2.savings }}
             </div>
           </div>
         </div>
+              {# TODO: Add graph and logging #}
 
-        <a href="{{ url_for("reveal") }}">Reveal</a>
+        <a href="{{ url_for("index") }}">Noch eins...</a>
+
     {% else %}
         <h1> action1 or action2 missing!</h1>
     {% endif %}

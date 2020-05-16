@@ -9,9 +9,16 @@
 
 {% block navbar %}
     <nav class="navbar navbar-default">
-        <a href="{{ url_for("index") }}">Home</a> |
-        <a href="{{ url_for("actions") }}">Liste aller Maßnahmen</a>
-        <a href="{{ url_for("submit") }}">Neue Maßnahme eingeben</a>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ url_for("index") }}">WasIstBesser?</a>
+            </div>
+            <div class="nav navbar-nav">
+                <a href="{{ url_for("index") }}">Home</a> |
+                <a href="{{ url_for("actions") }}">Liste aller Maßnahmen</a> |
+                <a href="{{ url_for("submit") }}">Neue Maßnahme eingeben</a>
+            </div>
+        </div>
     </nav>
 {% endblock %}
 
