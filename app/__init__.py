@@ -1,3 +1,5 @@
+from enum import Enum
+
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from random import sample
@@ -19,6 +21,7 @@ def shutdown_session(exception=None):
 
 from app.models import Action
 
+
 # add testactions
 
 # for i in range(1, 11):
@@ -29,9 +32,13 @@ from app.models import Action
 #
 #     db_session.add(action)
 #     db_session.commit()
-#
 
-app.a1, app.a2 = sample(database.data.all()[1:], 2)
+def reset_guess():
+    app.action1, app.action2 = sample(database.data.all()[1:], 2)
+    app.guess = None
+    app.correct = min(app.action1, app.action2)
+
+reset_guess()
 
 # routes
 from app import routes

@@ -18,6 +18,19 @@ class Action(Base):
     def image(self, size):
         pass
 
+
+    def __lt__(self, other):
+        return self.savings < other.savings
+
+    def __eq__(self, other):
+        if other == None:
+            return False
+        return self.savings == other.savings
+
+    def __le__(self, other):
+        return self.savings == other.savings or self.savings < other.savings
+
+
     def __repr__(self):
         return '<Maßnahme %r>' % self.name
 

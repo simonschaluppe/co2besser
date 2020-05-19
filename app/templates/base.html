@@ -2,6 +2,15 @@
 {% extends 'bootstrap/base.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
+{#{% block styles %}#}
+{#{{super()}}#}
+{#<style type="text/css">#}
+{#   body {#}
+{#       background-image: linear-gradient(80deg, #4c4646 20%, rgba(118, 101, 101, 0.64) 100%);#}
+{#   } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */#}
+{#</style>#}
+{#{% endblock %}#}
+
 {% block title %}
     {% if title %}{{ title }}{% else %}Co2 for you{% endif %}
 {% endblock %}
@@ -14,9 +23,9 @@
                 <a class="navbar-brand" href="{{ url_for("index") }}">WasIstBesser?</a>
             </div>
             <div class="nav navbar-nav">
-                <a href="{{ url_for("index") }}">Home</a> |
-                <a href="{{ url_for("actions") }}">Liste aller Maßnahmen</a> |
-                <a href="{{ url_for("submit") }}">Neue Maßnahme eingeben</a>
+                <a class="navbar-default" href="{{ url_for("index") }}">Home</a> |
+                <a class="navbar-default" href="{{ url_for("actions") }}">Liste aller Maßnahmen</a> |
+                <a class="navbar-default" href="{{ url_for("submit") }}">Neue Maßnahme eingeben</a>
             </div>
         </div>
     </nav>
@@ -24,6 +33,7 @@
 
 
 {% block content %}
+
     <div class="container">
         {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -40,3 +50,7 @@
         {% block app_content %}{% endblock %}
     </div>
 {% endblock %}
+
+{%  block footer %}
+    <div class="footer">(c) Simon Schneider</div>
+{%  endblock %}

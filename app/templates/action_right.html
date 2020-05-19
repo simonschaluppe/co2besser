@@ -1,0 +1,48 @@
+
+{# TODO: define beautiful action snippets #}
+{# https://stackoverflow.com/questions/8624520/passing-a-variable-into-a-jinja-import-or-include-from-a-parent-html-file #}
+
+<div class="row">
+    <div id="item">
+        <div class="box text-center">
+            {% if app.guess == None  %}
+                <div class="col-sm-offset-2">{{ app.action2.description }}</div>
+                <a href="{{ url_for("guess_right") }}" class="btn btn-default btn-block" role="button">Wählen!</a>
+            {% else %}
+                {% if app.guess == app.action2 and app.action2 <= app.action1 %}
+                    <div class="bg-success">
+                    {{ app.action2.description }}<br/>
+                    <span class="ui-state-highlight">{{ app.action2.savings }}</span><br/>
+                    Quelle: {{ app.action2.source }}
+                    </div>
+                {%  elif app.guess == app.action2 and app.action2 >= app.action1%}
+                    <div class="bg-danger">
+                    {{ app.action2.description }}<br/>
+                    <span class="ui-state-highlight">{{ app.action2.savings }}</span><br/>
+                    Quelle: {{ app.action2.source }}
+                    </div>
+                {% elif app.guess == app.action1 and app.guess == app.correct %}
+                    <div class="bg-warning">
+                    {{ app.action2.description }}<br/>
+                    <span class="ui-state-highlight">{{ app.action2.savings }}</span><br/>
+                    Quelle: {{ app.action2.source }}
+                    </div>
+                {% else %}
+                    <div class="bg-info">
+                    {{ app.action2.description }}<br/>
+                    <span class="ui-state-highlight">{{ app.action2.savings }}</span><br/>
+                    Quelle: {{ app.action2.source }}
+                    </div>
+                {% endif %}
+                    <a href="{{ url_for("index") }}" class="btn btn-default btn-block" role="button">Nochmal!</a>
+            {%  endif %}
+        </div>
+    </div>
+</div>
+<div class="row">
+    {% if app.guess == None %}
+        <a href="{{ url_for("guess_right") }}" class="btn btn-default btn-block" role="button">Wählen!</a>
+    {%  else %}
+        <a href="{{ url_for("index") }}" class="btn btn-default btn-block" role="button">Nochmal!</a>
+    {%  endif %}
+</div>

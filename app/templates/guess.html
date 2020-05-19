@@ -1,0 +1,31 @@
+{%  extends "index.html" %}
+
+{% block guess_content %}
+    {% if app.action1 and app.action2 %}
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-5">
+                {% include "action_left.html"%}
+            </div>
+              <div class="col-sm-2 jumbotron text-center" style="font-size: large">
+                                {# TODO: Add graph and logging #}
+                 {% if app.guess == None %}
+                       {# TODO: Styling both winning and loosing action #}
+                     oder
+                 {% elif app.guess == app.correct %}
+                    <div  style="color: chartreuse; text-blink: true">RICHTIG!</div>
+                 {% else %}
+                    <div  style="color: red">Falsch!</div>
+                 {% endif %}
+
+            </div>
+            <div class="col-sm-5">
+                 {% include "action_right.html"%}
+            </div>
+          </div>
+        </div>
+
+    {% else %}
+        <h1> action1 or action2 missing!</h1>
+    {% endif %}
+{%  endblock %}
