@@ -16,6 +16,35 @@ class Action(Base):
 
     # action_other_data = relationship("other", backref="action")
 
+class Action2(db.Model):
+    __tablename__ = "action"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, index=True, unique=True)
+    sector = db.Column(db.String, index=True)
+    category = db.Column(db.String, index=True)
+
+    reduction_factor = db.Column(db.Float, index=True)
+    savings = db.Column(db.Float, index=True)
+
+    description = db.Column(db.String, index=True)
+    solution_text = db.Column(db.String, index=True)
+
+    reference = db.Column(db.String, index=True)
+    comment = db.Column(db.String)
+
+    # def __init__(self, **kwargs):
+    #     self.name = kwargs.get('name')
+    #     self.sector = kwargs.get('sector', "Kein Sektor")
+    #     self.category = kwargs.get('category', "Keine Kategorie")
+    #     # for key, value in kwargs.items():
+    #     #     setattr(self, key, value)
+    #
+    #     # self.reduction_factor = kwargs.get("reduction_factor",REDUCTIONS[self.reduction])
+    #     self.co2standard = kwargs.get("co2standard", 0.0)
+    #     self.savings = kwargs.get("savings", 0.0)
+    #     self.description = kwargs.get("description")
+    #     # f"Maßnahme: {self.category} um {self.reduction} reduzieren.")
+
     def image(self, size):
         pass
 
@@ -31,7 +60,7 @@ class Action(Base):
         return self.savings == other.savings or self.savings < other.savings
 
     def __repr__(self):
-        return '<Maßnahme %r>' % self.name
+        return f"< Action {self.id}: {self.name}>"
 
 
 # TODO: Add Comparisons, that log action pairings, as well as votes
@@ -53,31 +82,4 @@ class Test(db.Model):
     testfield2 = db.Column(String)
 
 
-class Action2(db.Model):
-    __tablename__ = "action"
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, index=True, unique=True)
-    sector = db.Column(db.String, index=True)
-    category = db.Column(db.String, index=True)
 
-    reduction_factor = db.Column(db.Float, index=True)
-    savings = db.Column(db.Float, index=True)
-
-    description = db.Column(db.String, index=True)
-    solution_text = db.Column(db.String, index=True)
-
-    # def __init__(self, **kwargs):
-    #     self.name = kwargs.get('name')
-    #     self.sector = kwargs.get('sector', "Kein Sektor")
-    #     self.category = kwargs.get('category', "Keine Kategorie")
-    #     # for key, value in kwargs.items():
-    #     #     setattr(self, key, value)
-    #
-    #     # self.reduction_factor = kwargs.get("reduction_factor",REDUCTIONS[self.reduction])
-    #     self.co2standard = kwargs.get("co2standard", 0.0)
-    #     self.savings = kwargs.get("savings", 0.0)
-    #     self.description = kwargs.get("description")
-    #     # f"Maßnahme: {self.category} um {self.reduction} reduzieren.")
-
-    def __repr__(self):
-        return f"< Action {self.id}: {self.name}>"

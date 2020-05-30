@@ -43,6 +43,7 @@ def reset_guess():
     app.guess = None
     app.correct = min(app.action1, app.action2)
 
+
 reset_guess()
 
 # routes
@@ -52,7 +53,6 @@ bootstrap = Bootstrap(app)
 
 
 def add_drexel_to_db():
-
     import csv
     with open("static/data/food.csv", encoding="utf-8", newline='') as f:
         freader = csv.DictReader(f, delimiter="\t")
@@ -83,9 +83,31 @@ def add_drexel_to_db():
 
     for cat in food.keys():
         for reduction in REDUCTIONS:
-            name = "".join([cat," -",reduction])
             co2standard = sum([float(savings["CO2-Äquivalent in kg pro Person und Jahr"]) for savings in food[cat]])
-            savings = co2standard * (1 - REDUCTIONS[reduction])
-            b = Action2(name=name, reduction=reduction, category=cat, savings=round(savings,4))
+            savings = round(co2standard * (1 - REDUCTIONS[reduction]), 4)
+
+            action_dict = {
+                "name": "".join([cat, " -", reduction]),
+                "sector": "Ernährung",
+                "category": cat,
+                "savings": savings,
+                "reduction_factor": REDUCTIONS[reduction],
+                "description": f"Ernähringsstil: {cat} um {reduction} im Vergleich zum Durchschnitt reduzieren",
+                "solution_text": f"Führt im Vergleich zum durchschnittlichen Ernährungsstil zu " \
+                            f"Einsparungen von {savings} kg CO2eq pro Jahr",
+                "reference": "https://www.zwei-grad-eine-tonne.at/hintergrund-berechnungen/abschnitt-i-lustvoll-die"
+                             "-welt-retten"
+            }
+
+            b = Action2(**action_dict)
             db.session.add(b)
-            print(b, b.savings)
+            print(b)
+
+def delete_table(table):
+    for item in table.query.all():
+        db.session.delete(item)
+    if(input(f"Confirm deleting table '{table.__tablename__}' [y/n]? ").upper() == "Y"):
+        db.session.commit()
+    else:
+        print("rolling back changes")
+        db.session.rollback()
