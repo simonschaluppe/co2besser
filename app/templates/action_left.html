@@ -8,29 +8,29 @@
         {% if app.guess == None %}
             <div>{{ app.action1.description }}</div>
         {% else %}
-            {% if app.guess == app.action1 and app.action1 <= app.action2 %}
+            {% if app.guess == app.action1 and app.action1 >= app.action2 %}
                 <div class="bg-success">
                 {{ app.action1.description }}<br/>
                 <span class="ui-state-highlight">{{ app.action1.savings }}</span><br/>
-                Quelle: {{ app.action1.source }}
+                Quelle: {{ app.action1.reference }}
                 </div>
-            {%  elif app.guess == app.action1 and app.action1 >= app.action2%}
+            {%  elif app.guess == app.action1 and app.action1 <= app.action2%}
                 <div class="bg-danger">
                 {{ app.action1.description }}<br/>
                 <span class="ui-state-highlight">{{ app.action1.savings }}</span><br/>
-                Quelle: {{ app.action1.source }}
+                Quelle: {{ app.action1.reference }}
                 </div>
             {% elif app.guess == app.action2 and app.guess == app.correct %}
                 <div class="bg-warning">
                 {{ app.action1.description }}<br/>
                 <span class="ui-state-highlight">{{ app.action1.savings }}</span><br/>
-                Quelle: {{ app.action1.source }}
+                Quelle: {{ app.action1.reference }}
                 </div>
             {% else %}
                 <div class="bg-info">
                 {{ app.action1.description }}<br/>
                 <span class="ui-state-highlight">{{ app.action1.savings }}</span><br/>
-                Quelle: {{ app.action1.source }}
+                Quelle: {{ app.action1.reference }}
                 </div>
             {% endif %}
         {%  endif %}
