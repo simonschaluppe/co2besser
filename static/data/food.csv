@@ -1,0 +1,71 @@
+Lebensmittel	Konsum in kg/Monat	CO2-Äquivalent in g/kg	CO2-Äquivalent in kg pro Person und Jahr
+Rohwurst	2.1	3600	90.7
+Rindfleisch	0.7	12300	103.3
+Geflügel	0.7	3500	29.4
+Lamm	0.05	7700	4.6
+Schwein	1.40	4200	70.6
+Wild	0.1	10500	12.6
+Schinken	1	4800	57.6
+Meeresfrüchte	0.2	15000	36.0
+Fisch	0.6	6300	45.4
+Summe Fleisch, Fisch			450.2
+Hartkäse	1	5800	69.6
+Mozzarella	0.1	4300	5.2
+Schafskäse (Feta)	0.2	6500	15.6
+Frischkäse	0.5	5700	34.2
+Weichkäse, gereift	0.2	8000	19.2
+Butter	0.5	9200	55.2
+Sahne	0.4	4300	20.6
+Sauerrahm	0.2	3100	7.4
+Creme fraiche	0.1	4200	5.0
+Milch	6	1400	100.8
+Joghurt	3	2400	86.4
+Topfen	1	3400	40.8
+Eier	1.2	2000	28.8
+Summe Milchprodukte, Eier			488.9
+Margarine	0.2	1100	2.6
+Olivenöl	0.1	3100	3.7
+Rapsöl	0.5	2700	16.2
+andere Öle	0.5	3000	18.0
+Summe Öle und Fette			40.6
+Mischbrot	5	600	36.0
+Nudeln	1	500	6.0
+Weizenmehl	1	300	3.6
+Reis	0.7	3100	26.0
+Hirse, Couscous, Bulgur	0.5	500	3.0
+Tofu	0.01	1700	0.2
+Summe Getreideprodukte			74.8
+Avocado, Aprikosen	0.1	500	0.6
+Auberginen, Zucchini, Sellerie, Karotten, Rosenkohl, Randig, Zwiebeln	2	300	7.2
+Tomaten	2.2	800	21.1
+Kirschtomaten	0.1	900	1.1
+Fenchel, Kürbis, Lauch, Rettich	0.5	200	1.2
+Blumenkohl, Grünkohl, Kartoffeln, Kohlrabi, Rotkohl, Weißkohl	5	400	24.0
+Brokkoli, Paprika, Spargel	0.6	600	4.3
+Oilven	0.1	1500	1.8
+Spinat, frisch	0.1	300	0.4
+Spinat, gefroren	0.3	600	2.2
+Pilze	0.2	1300	3.1
+Salat	1	250	3.0
+Mais aus der Dose	0.2	1200	2.9
+Gurken	0.5	500	3.0
+Erbsen, Bohnen, Linsen	0.5	700	4.2
+Äpfel, Birnen	2.5	300	9.0
+Bananen	0.5	600	3.6
+Feigen	0.1	900	1.1
+Kiwi	0.1	700	0.8
+Erdbeeren	0.5	300	1.8
+Obst	3	400	14.4
+Gemüse, Konserven	1.5	500	9.0
+Summe Obst und Gemüse			119.8
+Nüsse	0.5	1000	6.0
+Zucker	3	600	21.6
+Rest	10	1200	144.0
+Summe Sonstiges			171.6
+Wein	2.2	1700	44.9
+Bier	10	300	36.0
+Rest, alk.	1	1000	12.0
+Kaffee	15	750	135.0
+Rest, nicht alk.	15	1000	180.0
+Summe Getränke			407.9
+Gesamtsumme			1753.7

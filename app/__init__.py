@@ -3,11 +3,16 @@ from enum import Enum
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from random import sample
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
 
 from config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
 from app.database import init_db, db_session
 
 init_db()

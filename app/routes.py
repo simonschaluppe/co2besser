@@ -64,3 +64,12 @@ def submit():
         flash("Maßnahme #{}: {} wurde hinzugefügt".format(new_action.name, new_action.description))
         return redirect(url_for("submit"))
     return render_template("submit_new.html", form=form)
+
+@app.route('/reset_DB')
+def reset_db():
+    #reset the db
+    reset_query = database.data.filter_by(description="irgendwas halt")
+    reset_query.delete()
+    flash(f"Reset DB: {reset_query.count()} deleted.")
+    db_session.commit()
+    return redirect(url_for("actions"))

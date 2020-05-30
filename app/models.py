@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float
+from sqlalchemy import Column, Integer, String, Float, ForeignKey
 
 from app.database import Base
 
@@ -6,8 +6,7 @@ from app.database import Base
 # Table action
 class Action(Base):
     __tablename__ = 'action'
-    id = Column(Integer,
-                   primary_key=True)
+    id = Column(Integer, primary_key=True)
     name = Column(String)
     description = Column(String)
     savings = Column(Float)
@@ -36,3 +35,12 @@ class Action(Base):
 
 
 # TODO: Add Comparisons, that log action pairings, as well as votes
+
+class Comparison(Base):
+    __tablename__ = "comparison"
+    id = Column(Integer, primary_key=True)
+    action1_id = Column(Integer, ForeignKey("action.id"))
+    action2_id = Column(Integer, ForeignKey("action.id"))
+    votes_1 = Column(Integer)
+    votes_2 = Column(Integer)
+    doesnshowup = Column(String)

@@ -1,6 +1,8 @@
 {%  extends "base.html" %}
 
-{% block content %}
+{% block app_content %}
+    <a class="btn btn-default" role="button" href="{{ url_for("reset_db") }}">Reset DB</a>
+
 <table class="table table-condensed bg-white">
     <thead>
         <tr>
