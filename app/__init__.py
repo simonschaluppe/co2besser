@@ -24,7 +24,7 @@ def shutdown_session(exception=None):
     db_session.remove()
 
 
-from app.models import Action
+from app.models import Action, Action2
 
 
 # add testactions
@@ -50,9 +50,42 @@ from app import routes
 
 bootstrap = Bootstrap(app)
 
-if __name__ == '__main__':
-    pass
-    # print("lol")
-    # app.run()
 
+def add_drexel_to_db():
 
+    import csv
+    with open("static/data/food.csv", encoding="utf-8", newline='') as f:
+        freader = csv.DictReader(f, delimiter="\t")
+        # for line in freader:
+        #     print(line["Lebensmittel"], line["CO2-Äquivalent in kg pro Person und Jahr"])
+        all = []
+        food = {}  # keys = kategorien, vals = list of foods
+        i, j = 0, 0
+        for line in freader:
+            all.append(line)
+            i += 1
+            if "Summe" in line["Lebensmittel"]:
+                cat = line["Lebensmittel"][6:]
+                food[cat] = all[j:i - 1]
+                j = i
+                print(cat)
+                print(food[cat])
+
+    # Beginnen wir damit, für das Feld "Ernährung" je Kategorie eine Maßnahme
+    # pro Reduktionsniveau zu definieren:
+    REDUCTIONS = {
+        "30%": 0.7,
+        "50%": 0.5,
+        "75": 0.25,
+        "90%": 0.1,
+        "100%": 0.0,
+    }
+
+    for cat in food.keys():
+        for reduction in REDUCTIONS:
+            name = "".join([cat," -",reduction])
+            co2standard = sum([float(savings["CO2-Äquivalent in kg pro Person und Jahr"]) for savings in food[cat]])
+            savings = co2standard * (1 - REDUCTIONS[reduction])
+            b = Action2(name=name, reduction=reduction, category=cat, savings=round(savings,4))
+            db.session.add(b)
+            print(b, b.savings)

@@ -59,14 +59,17 @@ class Action2(db.Model):
     name = db.Column(db.String, index=True, unique=True)
     sector = db.Column(db.String, index=True)
     category = db.Column(db.String, index=True)
+
+    reduction = db.Column(db.String, index=True)
     savings = db.Column(db.Float, index=True)
+
     description = db.Column(db.String, index=True)
+    solution_text = db.Column(db.String, index=True)
 
     # def __init__(self, **kwargs):
     #     self.name = kwargs.get('name')
     #     self.sector = kwargs.get('sector', "Kein Sektor")
     #     self.category = kwargs.get('category', "Keine Kategorie")
-    #     self.reduction = kwargs.get('reduction', "100%")
     #     # for key, value in kwargs.items():
     #     #     setattr(self, key, value)
     #
