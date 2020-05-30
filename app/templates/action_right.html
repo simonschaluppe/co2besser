@@ -7,7 +7,6 @@
         <header> Maßnahme 2 </header>
         {% if app.guess == None %}
             <div class="col-sm-offset-2">{{ app.action2.description }}</div>
-            <a href="{{ url_for("guess_right") }}" class="btn btn-default btn-block" role="button">Wählen!</a>
         {% else %}
             {% if app.guess == app.action2 and app.action2 >= app.action1 %}
                 <div class="bg-success">
