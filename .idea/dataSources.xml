@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="co2besser" uuid="5a250220-f6ad-4ccf-affa-a0069ecd0b06">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\Simon Schneider\PycharmProjects\co2besser\db\co2besser</jdbc-url>
-    </data-source>
-    <data-source source="LOCAL" name="co2besser [2]" uuid="12fa49c1-b3f7-4bf2-b67b-3f06959e0416">
+    <data-source source="LOCAL" name="co2besser" uuid="426d9eea-7cdd-49ea-8962-2f299ce58b25">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>

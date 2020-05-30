@@ -60,7 +60,7 @@ class Action2(db.Model):
     sector = db.Column(db.String, index=True)
     category = db.Column(db.String, index=True)
 
-    reduction = db.Column(db.String, index=True)
+    reduction_factor = db.Column(db.Float, index=True)
     savings = db.Column(db.Float, index=True)
 
     description = db.Column(db.String, index=True)
