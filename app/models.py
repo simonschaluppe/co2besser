@@ -1,22 +1,8 @@
-from sqlalchemy import Column, Integer, String, Float, ForeignKey
-
-from app.database import Base
 from app import db
 
-
 # Table action
-class Action(Base):
-    __tablename__ = 'action'
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    description = Column(String)
-    savings = Column(Float)
-    source = Column(String)
-    comment = Column(String)
 
-    # action_other_data = relationship("other", backref="action")
-
-class Action2(db.Model):
+class Action(db.Model):
     __tablename__ = "action"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, index=True, unique=True)
@@ -67,19 +53,19 @@ class Action2(db.Model):
 
 class Comparison(db.Model):
     __tablename__ = "comparison"
-    id = db.Column(Integer, primary_key=True)
-    action1_id = db.Column(Integer, ForeignKey("action.id"))
-    action2_id = db.Column(Integer, ForeignKey("action.id"))
-    votes_1 = db.Column(Integer)
-    votes_2 = db.Column(Integer)
-    doesnshowup = db.Column(String)
+    id = db.Column(db.Integer, primary_key=True)
+    action1_id = db.Column(db.Integer, db.ForeignKey("action.id"))
+    action2_id = db.Column(db.Integer, db.ForeignKey("action.id"))
+    votes_1 = db.Column(db.Integer)
+    votes_2 = db.Column(db.Integer)
+    doesnshowup = db.Column(db.String)
 
 
 class Test(db.Model):
     __tablename__ = "test"
     id = db.Column(db.Integer, primary_key=True)
     testfield = db.Column(db.String)
-    testfield2 = db.Column(String)
+    testfield2 = db.Column(db.String)
 
 
 

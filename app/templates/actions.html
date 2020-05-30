@@ -1,26 +1,27 @@
 {%  extends "base.html" %}
 
 {% block app_content %}
-    <a class="btn btn-default" role="button" href="{{ url_for("reset_db") }}">Reset DB</a>
+{#    <a class="btn btn-default" role="button" href="{{ url_for("reset_db") }}">Reset DB</a>#}
 
-<table class="table table-condensed bg-white">
-    <thead>
+    <table class="table table-condensed bg-white">
+        <thead>
+            <tr>
+
+                {% for attr in table.__table__.columns._data.keys() %}
+    {#            ^ not happy with this one ^#}
+    {#            {% for attr in list(actions[1].__dict__)[1:] %}#}
+    {#            why doesnt this^ work?? #}
+                    <th>{{ attr }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+
+        {% for action in table.query.all() %}
         <tr>
-            {% for attr in actions[1].__dict__.keys() %}
-{#            ^ not happy with this one ^#}
-{#            {% for attr in list(actions[1].__dict__)[1:] %}#}
-{#            why doesnt this^ work?? #}
-                <th>{{ attr }}</th>
+            {% for attr in table.__table__.columns._data.keys() %}
+            <td>{{ action.__getattribute__(attr) }}</td>
             {% endfor %}
         </tr>
-    </thead>
-
-    {% for action in actions %}
-    <tr>
-        {% for attr in actions[1].__dict__.keys() %}
-        <td>{{ action.__getattribute__(attr) }}</td>
-        {% endfor %}
-    </tr>
-    {%  endfor %}
-</table>
+        {%  endfor %}
+    </table>
 {% endblock %}

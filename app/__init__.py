@@ -13,36 +13,19 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-from app.database import init_db, db_session
-
-init_db()
-
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):
     # database.data.delete()
-    db_session.remove()
+    db.session.remove()
 
 
-from app.models import Action, Action2
-
-
-# add testactions
-
-# for i in range(1, 11):
-#     action = Action(id=i, name="var" + str(i),
-#                     description="text" * i,
-#                     savings=0.2 * i - 5,
-#                     source="https://www.zwei-grad-eine-tonne.at/")
-#
-#     db_session.add(action)
-#     db_session.commit()
+from app.models import Action
 
 def reset_guess():
-    app.action1, app.action2 = sample(database.data.all()[1:], 2)
+    app.action1, app.action2 = sample(Action.query.all(), 2)
     app.guess = None
     app.correct = min(app.action1, app.action2)
-
 
 reset_guess()
 
@@ -94,19 +77,20 @@ def add_drexel_to_db():
                 "reduction_factor": REDUCTIONS[reduction],
                 "description": f"Ernähringsstil: {cat} um {reduction} im Vergleich zum Durchschnitt reduzieren",
                 "solution_text": f"Führt im Vergleich zum durchschnittlichen Ernährungsstil zu " \
-                            f"Einsparungen von {savings} kg CO2eq pro Jahr",
+                                 f"Einsparungen von {savings} kg CO2eq pro Jahr",
                 "reference": "https://www.zwei-grad-eine-tonne.at/hintergrund-berechnungen/abschnitt-i-lustvoll-die"
                              "-welt-retten"
             }
 
-            b = Action2(**action_dict)
+            b = Action(**action_dict)
             db.session.add(b)
             print(b)
+
 
 def delete_table(table):
     for item in table.query.all():
         db.session.delete(item)
-    if(input(f"Confirm deleting table '{table.__tablename__}' [y/n]? ").upper() == "Y"):
+    if input(f"Confirm deleting table '{table.__tablename__}' [y/n]? ").upper() == "Y":
         db.session.commit()
     else:
         print("rolling back changes")
