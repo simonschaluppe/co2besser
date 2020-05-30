@@ -26,5 +26,4 @@ def get_actions():
     from app.models import Action
     return db_session.query(Action)
 
-
 data = get_actions()

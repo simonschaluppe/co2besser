@@ -48,9 +48,11 @@ reset_guess()
 # routes
 from app import routes
 
+bootstrap = Bootstrap(app)
+
 if __name__ == '__main__':
+    pass
     # print("lol")
     # app.run()
-    a = app.database.data
 
-bootstrap = Bootstrap(app)
+
