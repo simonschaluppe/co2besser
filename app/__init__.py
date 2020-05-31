@@ -22,15 +22,14 @@ def shutdown_session(exception=None):
     db.session.remove()
 
 
-try:
-    q = Action.query.all()
-    def reset_guess():
-        app.action1, app.action2 = sample(q, 2)
-        app.guess = None
-        app.correct = max(app.action1, app.action2)
-except:
-    raise Exception
-
+# not quite sure where this is supposed to go
+def reset_guess():
+    if Action.query.all():
+        app.action1, app.action2 = sample(Action.query.all(), 2)
+    else:
+        app.action1, app.action2 = None, None
+    app.guess = None
+    app.correct = max(app.action1, app.action2)
 
 # routes
 from app import routes
