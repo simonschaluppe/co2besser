@@ -25,7 +25,7 @@ from app.models import Action
 def reset_guess():
     app.action1, app.action2 = sample(Action.query.all(), 2)
     app.guess = None
-    app.correct = min(app.action1, app.action2)
+    app.correct = max(app.action1, app.action2)
 
 reset_guess()
 
@@ -59,7 +59,7 @@ def add_drexel_to_db():
     REDUCTIONS = {
         "30%": 0.7,
         "50%": 0.5,
-        "75": 0.25,
+        "75%": 0.25,
         "90%": 0.1,
         "100%": 0.0,
     }

@@ -11,25 +11,25 @@
             {% if app.guess == app.action2 and app.action2 >= app.action1 %}
                 <div class="bg-success">
                 {{ app.action2.description }}<br/>
-                <span class="ui-state-highlight">{{ app.action2.savings }}</span><br/>
+                    <p class="lead">{{ app.action2.solution_text }}</p>
                 Quelle: {{ app.action2.reference }}
                 </div>
             {%  elif app.guess == app.action2 and app.action2 <= app.action1%}
                 <div class="bg-danger">
                 {{ app.action2.description }}<br/>
-                <span class="ui-state-highlight">{{ app.action2.savings }}</span><br/>
+                    <p class="lead">{{ app.action2.solution_text }}</p>
                 Quelle: {{ app.action2.reference }}
                 </div>
             {% elif app.guess == app.action1 and app.guess == app.correct %}
                 <div class="bg-warning">
                 {{ app.action2.description }}<br/>
-                <span class="ui-state-highlight">{{ app.action2.savings }}</span><br/>
+                    <p class="lead">{{ app.action2.solution_text }}</p>
                 Quelle: {{ app.action2.reference }}
                 </div>
             {% else %}
                 <div class="bg-info">
                 {{ app.action2.description }}<br/>
-                <span class="ui-state-highlight">{{ app.action2.savings }}</span><br/>
+                    <p class="lead">{{ app.action2.solution_text }}</p>
                 Quelle: {{ app.action2.reference }}
                 </div>
             {% endif %}
@@ -38,10 +38,6 @@
 
 
 {% if app.guess == None %}
-    <div class="panel-footer">
-    <a href="{{ url_for("guess_right") }}" class="btn btn-default" role="button">Wählen!</a>
-{%  else %}
-    <a href="{{ url_for("index") }}" class="btn btn-default" role="button">Nochmal!</a>
+    <a href="{{ url_for("guess_right") }}" class="btn btn-primary btn-lg" role="button">Wählen!</a>
 {%  endif %}
-    </div>
 </div>

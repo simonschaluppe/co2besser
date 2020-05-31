@@ -14,8 +14,10 @@
                      oder
                  {% elif app.guess == app.correct %}
                     <div  style="color: chartreuse; text-blink: true">RICHTIG!</div>
+                    <a href="{{ url_for("index") }}" class="btn btn-primary btn-lg" role="button">Nochmal!</a>
                  {% else %}
                     <div  style="color: red">Falsch!</div>
+                    <a href="{{ url_for("index") }}" class="btn btn-primary btn-lg" role="button">Nochmal!</a>
                  {% endif %}
 
             </div>

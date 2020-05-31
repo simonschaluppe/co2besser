@@ -11,25 +11,25 @@
             {% if app.guess == app.action1 and app.action1 >= app.action2 %}
                 <div class="bg-success">
                 {{ app.action1.description }}<br/>
-                <span class="ui-state-highlight">{{ app.action1.savings }}</span><br/>
+                    <p class="lead">{{ app.action1.solution_text }}</p>
                 Quelle: {{ app.action1.reference }}
                 </div>
             {%  elif app.guess == app.action1 and app.action1 <= app.action2%}
                 <div class="bg-danger">
                 {{ app.action1.description }}<br/>
-                <span class="ui-state-highlight">{{ app.action1.savings }}</span><br/>
+                    <p class="lead">{{ app.action1.solution_text }}</p>
                 Quelle: {{ app.action1.reference }}
                 </div>
             {% elif app.guess == app.action2 and app.guess == app.correct %}
                 <div class="bg-warning">
                 {{ app.action1.description }}<br/>
-                <span class="ui-state-highlight">{{ app.action1.savings }}</span><br/>
+                    <p class="lead">{{ app.action1.solution_text }}</p>
                 Quelle: {{ app.action1.reference }}
                 </div>
             {% else %}
                 <div class="bg-info">
                 {{ app.action1.description }}<br/>
-                <span class="ui-state-highlight">{{ app.action1.savings }}</span><br/>
+                    <p class="lead">{{ app.action1.solution_text }}</p>
                 Quelle: {{ app.action1.reference }}
                 </div>
             {% endif %}
@@ -37,12 +37,8 @@
     </div>
 
 {% if app.guess == None %}
-    <div class="panel-footer">
-    <a href="{{ url_for("guess_left") }}" class="btn btn-default" role="button">Wählen!</a>
-{%  else %}
-    <a href="{{ url_for("index") }}" class="btn btn-default" role="button">Nochmal!</a>
+    <a href="{{ url_for("guess_left") }}" class="btn btn-primary btn-lg" role="button">Wählen!</a>
 {%  endif %}
-    </div>
 </div>
 
 
