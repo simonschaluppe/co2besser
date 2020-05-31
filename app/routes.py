@@ -24,6 +24,7 @@ def guess():
 @app.route('/guess_left')
 def guess_left():
     app.guess = app.action1
+    # TODO: log a comparison with a vote
     return render_template("guess.html", app=app)
 
 
