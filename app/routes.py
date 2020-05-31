@@ -2,9 +2,17 @@ from random import sample
 
 from flask import render_template, flash, redirect, url_for, logging
 
-from app import app, db, reset_guess
+from app import app, db
 from app.models import Action
 from app.submit import SubmitForm
+
+
+def reset_guess():
+    app.action1, app.action2 = sample(Action.query.all(), 2)
+    app.guess = None
+    app.correct = max(app.action1, app.action2)
+
+
 
 
 @app.route('/')
@@ -55,7 +63,7 @@ def submit():
         # Maßnahme hinzufügen
         # import pdb
         # pdb.set_trace()
-        new_action = Action(name="var" + str(Action.query.count()+1),
+        new_action = Action(name="var" + str(Action.query.count() + 1),
                             description=form.description.data,
                             sector=form.sector.data,
                             category=form.category.data,
@@ -71,7 +79,6 @@ def submit():
         flash("Maßnahme #{}: {} wurde hinzugefügt".format(new_action.name, new_action.description))
         return redirect(url_for("submit"))
     return render_template("submit_new.html", form=form)
-
 
 # @app.route('/reset_DB')
 # def reset_db():

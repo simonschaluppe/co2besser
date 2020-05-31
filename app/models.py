@@ -1,9 +1,9 @@
 from app import db
 
+
 # Table action
 
 class Action(db.Model):
-    __tablename__ = "action"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, index=True, unique=True)
     sector = db.Column(db.String, index=True)
@@ -52,7 +52,6 @@ class Action(db.Model):
 # TODO: Add Comparisons, that log action pairings, as well as votes
 
 class Comparison(db.Model):
-    __tablename__ = "comparison"
     id = db.Column(db.Integer, primary_key=True)
     a1_id = db.Column(db.Integer, db.ForeignKey("action.id"), index=True)
     a2_id = db.Column(db.Integer, db.ForeignKey("action.id"), index=True)
@@ -64,17 +63,8 @@ class Comparison(db.Model):
     def __eq__(self, other):
         if type(other) != type(self):
             return False
-        elif (self.a1_id == other.a1_id and self.a2_id == other.a2_id)\
-            or (self.a1_id == other.a2_id and self.a1_id == other.a2_id):
+        elif (self.a1_id == other.a1_id and self.a2_id == other.a2_id) \
+                or (self.a1_id == other.a2_id and self.a1_id == other.a2_id):
             return True
         else:
             return False
-
-class Test(db.Model):
-    __tablename__ = "test"
-    id = db.Column(db.Integer, primary_key=True)
-    testfield = db.Column(db.String)
-    testfield2 = db.Column(db.String)
-
-
-

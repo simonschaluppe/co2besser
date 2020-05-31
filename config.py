@@ -6,6 +6,6 @@ class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'alintschi'
     FLASK_APP = "co2besser.py"
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-                              'sqlite:///' + os.path.join(basedir, 'db/co2besser.db')
+                              'sqlite:///' + os.path.join(basedir, 'db/database.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_ECHO = True
+    SQLALCHEMY_ECHO = False
