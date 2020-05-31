@@ -2,7 +2,7 @@ from random import sample
 
 from flask import render_template, flash, redirect, url_for, logging
 
-from app import app, db
+from app import app, db, reset_guess
 from app.models import Action
 from app.submit import SubmitForm
 
