@@ -46,7 +46,7 @@ class Action(db.Model):
         return self.savings == other.savings or self.savings < other.savings
 
     def __repr__(self):
-        return f"< Action {self.id}: {self.name}>"
+        return f"<Action {self.id}: {self.name}>"
 
 
 # TODO: Add Comparisons, that log action pairings, as well as votes

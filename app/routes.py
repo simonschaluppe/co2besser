@@ -7,11 +7,6 @@ from app.models import Action
 from app.submit import SubmitForm
 
 
-def reset_guess():
-    app.action1, app.action2 = sample(Action.query.all(), 2)
-    app.guess = None
-    app.correct = max(app.action1, app.action2)
-
 
 
 
