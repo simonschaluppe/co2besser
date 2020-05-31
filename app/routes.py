@@ -57,7 +57,10 @@ def submit():
         # pdb.set_trace()
         new_action = Action(name="var" + str(Action.query.count()+1),
                             description=form.description.data,
+                            sector=form.sector.data,
+                            category=form.category.data,
                             savings=form.savings.data,
+                            solution_text=form.solution_text.data,
                             reference=form.reference.data,
                             comment=form.comment.data
                             )

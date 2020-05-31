@@ -54,12 +54,21 @@ class Action(db.Model):
 class Comparison(db.Model):
     __tablename__ = "comparison"
     id = db.Column(db.Integer, primary_key=True)
-    action1_id = db.Column(db.Integer, db.ForeignKey("action.id"))
-    action2_id = db.Column(db.Integer, db.ForeignKey("action.id"))
+    a1_id = db.Column(db.Integer, db.ForeignKey("action.id"), index=True)
+    a2_id = db.Column(db.Integer, db.ForeignKey("action.id"), index=True)
+    action1 = db.relationship("Action", foreign_keys=[a1_id])
+    action2 = db.relationship("Action", foreign_keys=[a2_id])
     votes_1 = db.Column(db.Integer)
     votes_2 = db.Column(db.Integer)
-    doesnshowup = db.Column(db.String)
 
+    def __eq__(self, other):
+        if type(other) != type(self):
+            return False
+        elif (self.a1_id == other.a1_id and self.a2_id == other.a2_id)\
+            or (self.a1_id == other.a2_id and self.a1_id == other.a2_id):
+            return True
+        else:
+            return False
 
 class Test(db.Model):
     __tablename__ = "test"
