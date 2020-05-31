@@ -149,6 +149,10 @@ def add_drexel_to_db():
             db.session.add(b)
 
 
+    if input(f"Commit to db? [y/n]? ").upper() == "Y":
+        db.session.commit()
+
+
 def delete_table(table):
     for item in table.query.all():
         db.session.delete(item)
