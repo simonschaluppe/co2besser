@@ -75,7 +75,7 @@ def add_drexel_to_db():
                 "category": cat,
                 "savings": savings,
                 "reduction_factor": REDUCTIONS[reduction],
-                "description": f"Ernähringsstil: {cat} um {reduction} im Vergleich zum Durchschnitt reduzieren",
+                "description": f"Ernährungsstil: {cat} um {reduction} im Vergleich zum Durchschnitt reduzieren",
                 "solution_text": f"Führt im Vergleich zum durchschnittlichen Ernährungsstil zu " \
                                  f"Einsparungen von {savings} kg CO2eq pro Jahr",
                 "reference": "https://www.zwei-grad-eine-tonne.at/hintergrund-berechnungen/abschnitt-i-lustvoll-die"

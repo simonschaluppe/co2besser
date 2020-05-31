@@ -2,29 +2,52 @@
 
 {% block guess_content %}
     {% if app.action1 and app.action2 %}
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-5">
-                {% include "action_left.html"%}
+        <div class="container" style="font-size: large">
+            <div class="card-deck text-center">
+            {% if app.guess == app.action1 and app.action1 >= app.action2 %}
+                <div class="card text-white bg-success box-shadow" style="width: 6rem;">
+            {%  elif app.guess == app.action1 and app.action1 <= app.action2 %}
+                <div class="card text-white bg-danger box-shadow" style="width:6rem;">
+            {% elif app.guess == app.action2 and app.guess == app.correct %}
+                <div class="card border-danger box-shadow" style="width:6rem;">
+            {% elif app.guess == app.action2 and app.guess != app.correct %}
+                <div class="card border-success box-shadow" style="width:6rem;">
+            {% else %}
+                <div class="card box-shadow" style="width:6rem;">
+            {% endif %}
+                    {% include "action_left.html"%}
+                </div>
+
+
+            <div class="col col-sm-2" style="font-size: large">
+                        {# TODO: Add graph and logging #}
+            {% if app.guess == None %}
+               {# TODO: Styling both winning and loosing action #}
+             oder
+            {% elif app.guess == app.correct %}
+                <div  style="color: chartreuse; text-blink: true">RICHTIG!</div>
+                <a href="{{ url_for("index") }}" class="btn btn-primary btn-lg" role="button">Nochmal!</a>
+            {% else %}
+                <div  style="color: red">Falsch!</div>
+                <a href="{{ url_for("index") }}" class="btn btn-primary btn-lg" role="button">Nochmal!</a>
+            {% endif %}
             </div>
-              <div class="col-sm-2 jumbotron text-center" style="font-size: large">
-                                {# TODO: Add graph and logging #}
-                 {% if app.guess == None %}
-                       {# TODO: Styling both winning and loosing action #}
-                     oder
-                 {% elif app.guess == app.correct %}
-                    <div  style="color: chartreuse; text-blink: true">RICHTIG!</div>
-                    <a href="{{ url_for("index") }}" class="btn btn-primary btn-lg" role="button">Nochmal!</a>
-                 {% else %}
-                    <div  style="color: red">Falsch!</div>
-                    <a href="{{ url_for("index") }}" class="btn btn-primary btn-lg" role="button">Nochmal!</a>
-                 {% endif %}
+
+            {% if app.guess == app.action2 and app.action2 >= app.action1 %}
+                <div class="card mb-4 text-white bg-success box-shadow" style="width:6rem;">
+            {%  elif app.guess == app.action2 and app.action2 <= app.action1 %}
+                <div class="card mb-4 text-white bg-danger box-shadow" style="width:6rem;">
+            {% elif app.guess == app.action1 and app.guess == app.correct %}
+                <div class="card mb-4 border-danger box-shadow" style="width:6rem;">
+            {% elif app.guess == app.action1 and app.guess != app.correct %}
+                <div class="card mb-4 border-success box-shadow" style="width:6rem;">
+            {% else %}
+                <div class="card mb-4 box-shadow" style="width:6rem;">
+            {% endif %}
+                {% include "action_right.html"%}
+                </div>
 
             </div>
-            <div class="col-sm-5">
-                 {% include "action_right.html"%}
-            </div>
-          </div>
         </div>
 
     {% else %}

@@ -2,43 +2,24 @@
 {# TODO: define beautiful action snippets #}
 {# https://stackoverflow.com/questions/8624520/passing-a-variable-into-a-jinja-import-or-include-from-a-parent-html-file #}
 
-<div class="panel industry-tile-medium">
-    <div class="panel-body">
-        <header> Maßnahme 1 </header>
-        {% if app.guess == None %}
-            <div>{{ app.action1.description }}</div>
-        {% else %}
-            {% if app.guess == app.action1 and app.action1 >= app.action2 %}
-                <div class="bg-success">
-                {{ app.action1.description }}<br/>
-                    <p class="lead">{{ app.action1.solution_text }}</p>
-                Quelle: {{ app.action1.reference }}
-                </div>
-            {%  elif app.guess == app.action1 and app.action1 <= app.action2%}
-                <div class="bg-danger">
-                {{ app.action1.description }}<br/>
-                    <p class="lead">{{ app.action1.solution_text }}</p>
-                Quelle: {{ app.action1.reference }}
-                </div>
-            {% elif app.guess == app.action2 and app.guess == app.correct %}
-                <div class="bg-warning">
-                {{ app.action1.description }}<br/>
-                    <p class="lead">{{ app.action1.solution_text }}</p>
-                Quelle: {{ app.action1.reference }}
-                </div>
-            {% else %}
-                <div class="bg-info">
-                {{ app.action1.description }}<br/>
-                    <p class="lead">{{ app.action1.solution_text }}</p>
-                Quelle: {{ app.action1.reference }}
-                </div>
-            {% endif %}
-        {%  endif %}
-    </div>
+<div class="card-header">
+    <h4 class="my-0 font-weight-normal"> Maßnahme 1 </h4>
+</div>
+<div class="card-body">
+
+    {{ app.action2.description }}
+
+    {% if app.guess != None %}
+        <h1 class="card-title">
+        {{ app.action1.savings }}
+        <small>kg CO2 äquiv./Jahr</small></h1>
+
+        <small>Quelle: <a href="{{ app.action1.reference }}">{{ app.action1.reference }}</a></small>
+    {% endif %}
 
 {% if app.guess == None %}
-    <a href="{{ url_for("guess_left") }}" class="btn btn-primary btn-lg" role="button">Wählen!</a>
+    <br/>
+    <a href="{{ url_for("guess_left") }}" class="btn btn-lg btn-block btn-primary" role="button">Wählen!</a>
 {%  endif %}
 </div>
-
 
