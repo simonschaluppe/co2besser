@@ -5,8 +5,9 @@
 {% block styles %}
 {{super()}}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/sketchy/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/4.0/examples/pricing/pricing.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/sketchy/bootstrap.min.css" rel="stylesheet">
+
 {% endblock %}
 
 {% block title %}
@@ -36,15 +37,18 @@
                 {# application content needs to be provided in the app_content block #}
         {% block app_content %}{% endblock %}
 
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <ul>
-                {% for message in messages %}
-            <div class="alert alert-info" role="alert">{{ message }}</div>
-                {% endfor %}
-            </ul>
-            {% endif %}
-        {% endwith %}
+
+        <div class="row align-items-end">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                <div class="alert alert-info" role="alert">{{ message }}</div>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
     </div>
 {% endblock %}
 

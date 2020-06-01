@@ -19,12 +19,23 @@
                 </div>
 
 
-            <div class="col col-sm-2" style="font-size: large">
+            <div class="col col-sm-2 text-center" style="font-size: large">
             {% if app.guess == None %}
                 {# TODO: Styling both winning and loosing action #}
                 {# TODO: Add graph and logging #}
-                oder <br>
-                <a href="#" class="btn btn-primary btn-lg" role="button">Publikumsjoker!</a>
+                <p>oder <br>
+                <a href="#joker" data-toggle="collapse" class="btn text-center btn-primary" role="button" aria-expanded="false" aria-controls="joker">
+                    Publikumsjoker!
+                </a></p>
+                <div class="collapse" id="joker">
+                    Odds: <br>
+                    {# Das stimmt nicht ganz, sollte noch die seite checken:#}
+                    {% if app.action1 == app.comparison.action1 %}
+                        {{ app.comparison.votes_1 }} : {{ app.comparison.votes_2 }}
+                    {% else %}
+                        {{ app.comparison.votes_2 }} : {{ app.comparison.votes_1 }}
+                    {% endif %}
+                </div>
             {% elif app.guess == app.correct %}
                 <div  style="color: chartreuse; text-blink: true">RICHTIG!</div>
                 <a href="{{ url_for("index") }}" class="btn btn-primary btn-lg" role="button">Nochmal!</a>
