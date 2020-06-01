@@ -1,4 +1,4 @@
-from app import db
+from app import db, app
 from app.models import Action
 
 def add_drexel_to_db():

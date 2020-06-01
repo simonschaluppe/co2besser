@@ -57,14 +57,19 @@ class Comparison(db.Model):
     a2_id = db.Column(db.Integer, db.ForeignKey("action.id"), index=True)
     action1 = db.relationship("Action", foreign_keys=[a1_id])
     action2 = db.relationship("Action", foreign_keys=[a2_id])
-    votes_1 = db.Column(db.Integer)
-    votes_2 = db.Column(db.Integer)
+    votes_1 = db.Column(db.Integer, default=0)
+    votes_2 = db.Column(db.Integer, default=0)
 
     def __eq__(self, other):
         if type(other) != type(self):
             return False
-        elif (self.a1_id == other.a1_id and self.a2_id == other.a2_id) \
-                or (self.a1_id == other.a2_id and self.a1_id == other.a2_id):
+        elif (self.action1 == other.action1 and self.action2 == other.action2) \
+                or (self.action1 == other.action2 and self.action2 == other.action1):
             return True
         else:
             return False
+
+    def __repr__(self):
+        return f"<Comparison {self.id}: {self.action1} {self.votes_1} : {self.votes_2} {self.action2}>"
+
+

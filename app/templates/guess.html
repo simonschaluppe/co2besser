@@ -20,10 +20,11 @@
 
 
             <div class="col col-sm-2" style="font-size: large">
-                        {# TODO: Add graph and logging #}
             {% if app.guess == None %}
-               {# TODO: Styling both winning and loosing action #}
-             oder
+                {# TODO: Styling both winning and loosing action #}
+                {# TODO: Add graph and logging #}
+                oder <br>
+                <a href="#" class="btn btn-primary btn-lg" role="button">Publikumsjoker!</a>
             {% elif app.guess == app.correct %}
                 <div  style="color: chartreuse; text-blink: true">RICHTIG!</div>
                 <a href="{{ url_for("index") }}" class="btn btn-primary btn-lg" role="button">Nochmal!</a>

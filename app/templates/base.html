@@ -33,6 +33,9 @@
 {% block content %}
 
     <div class="container">
+                {# application content needs to be provided in the app_content block #}
+        {% block app_content %}{% endblock %}
+
         {% with messages = get_flashed_messages() %}
             {% if messages %}
             <ul>
@@ -40,12 +43,8 @@
             <div class="alert alert-info" role="alert">{{ message }}</div>
                 {% endfor %}
             </ul>
-        {% endif %}
+            {% endif %}
         {% endwith %}
-
-
-        {# application content needs to be provided in the app_content block #}
-        {% block app_content %}{% endblock %}
     </div>
 {% endblock %}
 

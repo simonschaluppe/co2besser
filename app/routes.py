@@ -2,12 +2,38 @@ from random import sample
 
 from flask import render_template, flash, redirect, url_for, logging
 
-from app import app, db, reset_guess
-from app.models import Action
+from app import app, db
+from app.models import Action, Comparison
 from app.submit import SubmitForm
+from app import db_utils
 
 
 
+# not quite sure where this is supposed to go
+def reset_guess():
+    if Action.query.all():
+        app.action1, app.action2 = sample(Action.query.all(), 2)
+        app.guess = None
+        app.correct = max(app.action1, app.action2)
+
+        #find Comparison, if existing take it, if not add it
+        app.comparison = None
+        new_comp = Comparison(action1=app.action1, action2=app.action2)
+        for comp in db.session.query(Comparison).all():
+            if new_comp == comp:
+                app.comparison = comp
+                flash(f"found {app.comparison}")
+
+        if app.comparison is None:
+            db.session.add(new_comp)
+            db.session.commit()
+            app.comparison = db.session.query(Comparison).all()[-1]
+
+            flash(f"added {app.comparison}")
+
+    else:
+        app.action1, app.action2 = None, None
+        app.comparison = None
 
 
 @app.route('/')
@@ -27,15 +53,31 @@ def guess():
 @app.route('/guess_left')
 def guess_left():
     app.guess = app.action1
-    # TODO: log a comparison with a vote
+    c = db.session.query(Comparison).get(app.comparison.id)
+    if app.action1 == c.action1:
+        c.votes_1 += 1
+    elif app.action1 == c.action2:
+        c.votes_2 += 1
+    else:
+        raise ValueError(f"{app.action1} is not part of {c.__repr__()}!")
+    db.session.commit()
+    flash(f"Registered Vote for {app.action1} in {c}")
     return render_template("guess.html", app=app)
 
 
 @app.route('/guess_right')
 def guess_right():
     app.guess = app.action2
+    c = db.session.query(Comparison).get(app.comparison.id)
+    if app.action2 == c.action1:
+        c.votes_1 += 1
+    elif app.action2 == c.action2:
+        c.votes_2 += 1
+    else:
+        raise ValueError(f"{app.action2} is not part of {c.__repr__()}!")
+    db.session.commit()
+    flash(f"Registered Vote for {app.action2} in {c}")
     return render_template("guess.html", app=app)
-
 
 # TODO: Guesses in einem template zusammenfassen:
 # def guess(side):
