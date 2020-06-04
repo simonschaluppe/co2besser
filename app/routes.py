@@ -37,6 +37,9 @@ def reset_guess():
 
 
 @app.route('/')
+def landing():
+    return render_template("landing.html")
+
 @app.route('/index')
 def index():
     # [a1], current_actions[a2]
@@ -85,6 +88,7 @@ def guess_right():
 # @app.route('/reveal')
 # def reveal():
 #     return render_template("reveal.html", action1=app.a1, action2=app.a2)
+
 
 
 @app.route('/actions')
