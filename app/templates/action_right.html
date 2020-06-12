@@ -3,10 +3,12 @@
 {# https://stackoverflow.com/questions/8624520/passing-a-variable-into-a-jinja-import-or-include-from-a-parent-html-file #}
 
 <div class="card-header">
-    <h4 class="my-0 font-weight-normal"> Maßnahme 2 </h4>
+    <h4 class="my-0 font-weight-normal"> Bereich {{ app.action2.sector }} </h4>
 </div>
 <div class="card-body">
 
+    Kategorie: {{ app.action2.category }}<br>
+    Name: {{ app.action2.name }}<br>
     {{ app.action2.description }}
 
     {% if app.guess != None %}
