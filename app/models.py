@@ -3,6 +3,34 @@ from app import db
 
 # Table action
 
+class Emission(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, index=True, unique=True)
+    sector = db.Column(db.String, index=True)
+    category = db.Column(db.String, index=True)
+
+    description = db.Column(db.String, index=True)
+
+    emissions = db.Column(db.Float, index=True)
+
+    reference = db.Column(db.String, index=True)
+    comment = db.Column(db.String)
+
+    def __lt__(self, other):
+        return self.emissions < other.emissions
+
+    def __eq__(self, other):
+        if other == None:
+            return False
+        return self.emissions == other.emissions
+
+    def __le__(self, other):
+        return self.emissions == other.emissions or self.emissions < other.emissions
+
+    def __repr__(self):
+        return f"<Emission {self.id}: {self.name}>"
+
+
 class Action(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, index=True, unique=True)
