@@ -1,5 +1,43 @@
 from app import db, app
-from app.models import Action
+from app.models import Action, Emission
+
+def add_food_emissions():
+    import csv
+    with open("static/data/food.csv", encoding="utf-8", newline='') as f:
+        freader = csv.DictReader(f, delimiter="\t")
+        # for line in freader:
+        #     print(line["Lebensmittel"], line["CO2-Äquivalent in kg pro Person und Jahr"])
+        all = []
+        food = {}  # keys = kategorien, vals = list of foods
+        i, j = 0, 0
+        for line in freader:
+            all.append(line)
+            i += 1
+            if "Summe" in line["Lebensmittel"]:
+                cat = line["Lebensmittel"][6:]
+                food[cat] = all[j:i - 1]
+                j = i
+                print(cat)
+                print(food[cat])
+
+    for cat in food.keys():
+        emissions = sum([float(savings["CO2-Äquivalent in kg pro Person und Jahr"]) for savings in food[cat]])
+        emission_dict = {
+            "name": "".join([cat, " Durchschnittskonsum"]),
+            "sector": "Ernährung",
+            "category": cat,
+            "emissions": emissions,
+            "description": "\n".join(["".join([item["Lebensmittel"], ": ",
+                                               item["Konsum in kg/Monat"], " kg/Monat"])
+                                      for item in food[cat]]),
+            "reference": "https://www.zwei-grad-eine-tonne.at/hintergrund-berechnungen/abschnitt-i-lustvoll-die"
+                         "-welt-retten"
+        }
+
+        b = Emission(**emission_dict)
+        db.session.add(b)
+        print(b)
+
 
 def add_drexel_to_db():
     import csv
