@@ -1,0 +1,5 @@
+INFO     14-07 15:39 db_utils.py  entering app.db_utils...
+INFO     14-07 15:39 db_utils.py  finished app.db_utils.
+WARNING  14-07 15:40 <input>      warn!
+ERROR    14-07 15:40 <input>      Oh-OH!
+CRITICAL 14-07 15:40 <input>      kthxbye!

@@ -30,6 +30,9 @@ class Emission(db.Model):
     def __repr__(self):
         return f"<Emission {self.id}: {self.name}>"
 
+    def __str__(self):
+        return self.__repr__()
+
 
 class Action(db.Model):
     id = db.Column(db.Integer, primary_key=True)
