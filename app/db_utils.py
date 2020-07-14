@@ -1,9 +1,10 @@
 from app import db, app
 from app.models import Action, Emission
 
+
 def add_food_emissions():
     import csv
-    with open("static/data/food.csv", encoding="utf-8", newline='') as f:
+    with open("app/static/data/food.csv", encoding="utf-8", newline='') as f:
         freader = csv.DictReader(f, delimiter="\t")
         # for line in freader:
         #     print(line["Lebensmittel"], line["CO2-Äquivalent in kg pro Person und Jahr"])
@@ -37,6 +38,9 @@ def add_food_emissions():
         b = Emission(**emission_dict)
         db.session.add(b)
         print(b)
+
+    if input(f"Commit to db? [y/n]? ").upper() == "Y":
+        db.session.commit()
 
 
 def add_drexel_to_db():

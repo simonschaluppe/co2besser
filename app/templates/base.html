@@ -6,7 +6,7 @@
 {{super()}}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://getbootstrap.com/docs/4.0/examples/pricing/pricing.css" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/sketchy/bootstrap.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/journal/bootstrap.min.css" rel="stylesheet">
 
 {% endblock %}
 
@@ -22,9 +22,9 @@
             </div>
             <div id="navbarColor03" class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
-                    <li><a class="nav-link" href="{{ url_for("actions") }}">Liste aller Maßnahmen</a> </li>
-                    <li><a class="nav-link" href="{{ url_for("submit") }}">Selbst eine Co2-Maßnahme eingeben</a> </li>
                     <li><a class="nav-link" href="{{ url_for("landing") }}">Zum Hintergrund</a> </li>
+                    <li><a class="nav-link" href="{{ url_for("actions") }}">Liste aller Maßnahmen</a> </li>
+                    <li><a class="nav-link" href="{{ url_for("submit") }}">Eine eigene Co2-Maßnahme eingeben</a> </li>
                     <li><a class="nav-link" target="_blank" href="https://simonschaluppe.org">my other stuff</a> </li>
                 </ul>
             </div>
@@ -39,7 +39,12 @@
         {% block app_content %}{% endblock %}
 
 
-        <div class="row align-items-end">
+
+    </div>
+{% endblock %}
+
+{%  block footer %}
+    <div class="row align-items-end">
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                 <ul>
@@ -50,9 +55,6 @@
                 {% endif %}
             {% endwith %}
         </div>
-    </div>
-{% endblock %}
-
-{%  block footer %}
     <div class="footer">(c) Simon Schneider</div>
+
 {%  endblock %}
