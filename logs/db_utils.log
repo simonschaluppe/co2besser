@@ -3,3 +3,25 @@ INFO     14-07 15:39 db_utils.py  finished app.db_utils.
 WARNING  14-07 15:40 <input>      warn!
 ERROR    14-07 15:40 <input>      Oh-OH!
 CRITICAL 14-07 15:40 <input>      kthxbye!
+INFO     | 14-07 15:46 | db_utils.py  | entering app.db_utils...
+INFO     | 14-07 15:46 | db_utils.py  | finished app.db_utils.
+CRITICAL | 14-07 15:46 | <input>      | kthxbye!
+ERROR    | 14-07 15:46 | <input>      | Oh-OH!
+INFO     | 14-07 15:46 | db_utils.py  | db.session.add(<Emission None: Fleisch, Fisch Durchschnittskonsum>)
+INFO     | 14-07 15:46 | db_utils.py  | db.session.add(<Emission None: Milchprodukte, Eier Durchschnittskonsum>)
+INFO     | 14-07 15:46 | db_utils.py  | db.session.add(<Emission None: Öle und Fette Durchschnittskonsum>)
+INFO     | 14-07 15:46 | db_utils.py  | db.session.add(<Emission None: Getreideprodukte Durchschnittskonsum>)
+INFO     | 14-07 15:46 | db_utils.py  | db.session.add(<Emission None: Obst und Gemüse Durchschnittskonsum>)
+INFO     | 14-07 15:46 | db_utils.py  | db.session.add(<Emission None: Sonstiges Durchschnittskonsum>)
+INFO     | 14-07 15:46 | db_utils.py  | db.session.add(<Emission None: Getränke Durchschnittskonsum>)
+INFO     | 15-07 09:35 | db_utils.py  | entering app.db_utils...
+INFO     | 15-07 09:35 | db_utils.py  | finished app.db_utils.
+INFO     | 15-07 09:36 | db_utils.py  | db.session.add(<Emission None: Fleisch, Fisch Durchschnittskonsum>)
+INFO     | 15-07 09:36 | db_utils.py  | db.session.add(<Emission None: Milchprodukte, Eier Durchschnittskonsum>)
+INFO     | 15-07 09:36 | db_utils.py  | db.session.add(<Emission None: Öle und Fette Durchschnittskonsum>)
+INFO     | 15-07 09:36 | db_utils.py  | db.session.add(<Emission None: Getreideprodukte Durchschnittskonsum>)
+INFO     | 15-07 09:36 | db_utils.py  | db.session.add(<Emission None: Obst und Gemüse Durchschnittskonsum>)
+INFO     | 15-07 09:36 | db_utils.py  | db.session.add(<Emission None: Sonstiges Durchschnittskonsum>)
+INFO     | 15-07 09:36 | db_utils.py  | db.session.add(<Emission None: Getränke Durchschnittskonsum>)
+INFO     | 17-07 13:05 | db_utils.py  | entering app.db_utils...
+INFO     | 17-07 13:05 | db_utils.py  | finished app.db_utils.

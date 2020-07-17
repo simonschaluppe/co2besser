@@ -6,7 +6,7 @@ import logging
 ### LOGGING
 ##########
 
-LOG_FORMAT = '%(levelname)-8s %(asctime)s %(filename)-12s %(message)s'
+LOG_FORMAT = '%(levelname)-8s | %(asctime)s | %(filename)-12s | %(message)s'
 LOG_CONSOLE = True
 LOG_FILE = "logs/db_utils.log"
 
