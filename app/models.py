@@ -8,6 +8,7 @@ class Emission(db.Model):
     name = db.Column(db.String, index=True, unique=True)
     sector = db.Column(db.String, index=True)
     category = db.Column(db.String, index=True)
+    variation = db.Column(db.String, index=True)
 
     description = db.Column(db.String, index=True)
 
