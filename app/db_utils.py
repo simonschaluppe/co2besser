@@ -1,32 +1,23 @@
+import openpyxl
+
 from app import db, app
 from app.models import Action, Emission
-import logging
+from app.log import configure_logger
 
-##########
-### LOGGING
-##########
+import xlwings as xw
 
 LOG_FORMAT = '%(levelname)-8s | %(asctime)s | %(filename)-12s | %(message)s'
-LOG_CONSOLE = True
-LOG_FILE = "logs/db_utils.log"
+LOG_TO_FILE = False
+LOG_TO_CONSOLE = False
+LOG_FILE_PATH = "logs\ls.log"
 
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
-handler = logging.FileHandler(filename=LOG_FILE,
-                              mode='a',
-                              encoding="utf-8")
-formatter = logging.Formatter(LOG_FORMAT,
-                              datefmt='%d-%m %H:%M')
-handler.setFormatter(formatter)
-logger.addHandler(handler)
-if LOG_CONSOLE:
-    console = logging.StreamHandler()
-    console.setLevel(logging.DEBUG)
-    console.setFormatter(formatter)
-    logger.addHandler(console)
-##########
-
+logger = configure_logger()
 logger.info(f"entering {__name__}...")
+
+
+def populate_emissions_table():
+    pass
+
 
 def add_food_emissions():
     import csv
@@ -67,7 +58,6 @@ def add_food_emissions():
     if input(f"Commit to db? [y/n]? ").upper() == "Y":
         db.session.commit()
         logger.info(f"db.session.commit()")
-
 
 
 def add_drexel_to_db():
@@ -198,4 +188,17 @@ def delete_table(table):
         logger.info(f"db.session.rollback()")
 
 
-logger.info(f"finished {__name__}.")
+if __name__ == "__main__":
+    wb = openpyxl.load_workbook("app/static/data/Emissionskatalog.xlsx", read_only=False, data_only=True)
+    ws = wb.active
+    table_ref = ws._tables["Tabelle1"].ref
+    table = ws[table_ref]
+    headers = {}
+    for i in enumerate(table[0]):
+        print(i[0], i[1])
+        headers[i[1].value] = i[0]
+    for row in table[1:]:
+        print(f"sector: {row[0]}")
+
+    # emissions_table = wb.active.tables["Table1"]
+    logger.info(f"finished {__name__}.")
