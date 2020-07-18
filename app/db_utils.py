@@ -197,8 +197,27 @@ if __name__ == "__main__":
     for i in enumerate(table[0]):
         print(i[0], i[1])
         headers[i[1].value] = i[0]
+
     for row in table[1:]:
-        print(f"sector: {row[0]}")
+        emission_dict = {
+            "sector": row[headers["sector"]].value,
+            "category": row[headers["category"]].value,
+            "variation": row[headers["variation"]].value,
+            "name": row[headers["name"]].value,
+            "description": row[headers["description"]].value,
+            "emissions": row[headers["emissions"]].value,
+            "reference": row[headers["reference"]].value,
+            "comment": row[headers["comment"]].value,
+        }
+        e = Emission(**emission_dict)
+        db.session.add(e)
+
+    if input(f"Commit {len(table)-1} Emission entries to db? [y/n]? ").upper() == "Y":
+        db.session.commit()
+        logger.info(f"db.session.commit()")
+    else:
+        db.session.rollback()
+        logger.info(f"db.session.rollback()")
 
     # emissions_table = wb.active.tables["Table1"]
     logger.info(f"finished {__name__}.")
