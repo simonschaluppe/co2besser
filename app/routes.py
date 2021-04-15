@@ -96,6 +96,11 @@ def actions():
     # getze actions
     return render_template("actions.html", table=Action)
 
+@app.route('/comparisons')
+def comparisons():
+    # getze actions
+    return render_template("actions.html", table=Comparison)
+
 
 @app.route('/submit', methods=["GET", "POST"])
 def submit():
@@ -129,3 +134,5 @@ def submit():
 #     db.session.commit()
 #     flash(f"Reset DB: {i} Action(s) deleted.")
 #     return redirect(url_for("actions"))
+
+
